@@ -14,11 +14,13 @@ def NLL(y_true, y_pred):
     return -tf.linalg.trace(
         tf.matmul(
             tf.cast(y_true, dtype='float32'),
-            tf.transpose(tf.cast(tf.math.log(y_pred + 1e-10), dtype='float32'), [0, 1, 3, 2])
+            #tf.transpose(tf.cast(tf.math.log(y_pred + 1e-8), dtype='float32'), [0, 1, 3, 2])
+            tf.transpose(tf.cast(tf.math.log(tf.clip_by_value(y_pred, 1e-8, 1.0)), dtype='float32'), [0, 1, 3, 2])
             ) +
         tf.matmul(
             tf.cast((1 - y_true), dtype='float32'),
-            tf.transpose(tf.cast(tf.math.log(1 - y_pred + 1e-10), dtype='float32'), [0, 1, 3, 2])
+            #tf.transpose(tf.cast(tf.math.log(1 - y_pred + 1e-8), dtype='float32'), [0, 1, 3, 2])
+            tf.transpose(tf.cast(tf.math.log(tf.clip_by_value(1 - y_pred, 1e-8, 1.0)), dtype='float32'), [0, 1, 3, 2])
             )
         )
 

@@ -13,7 +13,7 @@ import math
 import copy
 import re
 import json
-import config as cf
+#import config as cf
 
 if tf.__version__ == '1.14.0':
     def binarize(x, th):
@@ -158,8 +158,8 @@ def dil_fact(arr, op='sum'):
                 break
         return 2 ** dil
 
-def save_dil_fact(saving_path, dil):
-    f = open(saving_path+'autodil/learned_dil_'+'{:.1e}'.format(cf.reg_strength)+'_'+'{:.1e}'.format(cf.threshold)+'_{}'.format(cf.warmup)+'.json','w')
+def save_dil_fact(saving_path, dil, cf):
+    f = open(saving_path+'/learned_dil_'+'{:.1e}'.format(cf.reg_strength)+'_'+'{:.1e}'.format(cf.threshold)+'_{}'.format(cf.warmup)+'.json','w')
     f.write(format_structure(dil))
     f.close()
     
@@ -176,7 +176,7 @@ def g_weights(w, c_in, c_out, r_f):
                 )    
     return tf.constant(g_w_list, shape=[1,kernel_size], dtype='float32')
 
-def effective_size(model):
+def effective_size(model, cf):
     actual_gamma = dict()
     
     delta_params = 0
@@ -201,7 +201,7 @@ def effective_size(model):
 
     return model.count_params() - delta_params
 
-def copy_weights(model, tmp_model):
+def copy_weights(model, tmp_model, cf):
     # copy weights from tmp_model to model
     # this tedious step is necessary because keras save in last positions non-trainable
     # weights, thus passing from non-trainable to trainable generates a mismatch error

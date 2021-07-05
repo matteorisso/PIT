@@ -5,7 +5,7 @@ Created on Tue Nov 24 10:11:50 2020
 @author: MatteoRisso
 """
 
-import config as cf
+#import config as cf
 import numpy as np
 import tensorflow as tf
 import utils
@@ -23,7 +23,8 @@ else:
     mae = 'mean_absolute_error'
 
 class export_structure(tf.keras.callbacks.Callback):
-    def __init__(self):
+    def __init__(self, cf):
+        self.cf = cf
         super(export_structure, self).__init__()
     
     def set_model(self, model):
@@ -31,36 +32,36 @@ class export_structure(tf.keras.callbacks.Callback):
 
     def on_train_begin(self, logs=None):
         # Initialize the best as infinity.
-        if cf.dataset == 'PPG_Dalia':
+        if self.cf.dataset == 'PPG_Dalia':
            self.best = np.Inf
-        elif cf.dataset == 'Nottingham' or cf.dataset == 'JSB_Chorales':
+        elif self.cf.dataset == 'Nottingham' or self.cf.dataset == 'JSB_Chorales':
            self.best = np.Inf    
-        elif cf.dataset == 'SeqMNIST' or cf.dataset == 'PerMNIST':
+        elif self.cf.dataset == 'SeqMNIST' or self.cf.dataset == 'PerMNIST':
            self.best = 0
         else:
-           print("{} is not supported".format(cf.dataset))
+           print("{} is not supported".format(self.cf.dataset))
            sys.exit()
         self.gamma = dict()
         self.i = 0
 
     def on_epoch_end(self, epoch, logs=None):
         #get current validation mae
-        if cf.dataset == 'PPG_Dalia':
+        if self.cf.dataset == 'PPG_Dalia':
             current = logs.get(val_mae)
             l = 1
             h = 0
             wait = 0
-        elif cf.dataset == 'Nottingham' or cf.dataset == 'JSB_Chorales':
+        elif self.cf.dataset == 'Nottingham' or self.cf.dataset == 'JSB_Chorales':
             current = logs.get("val_loss")
             l = 1
             h = 0
-        elif cf.dataset == 'SeqMNIST' or cf.dataset == 'PerMNIST':
+        elif self.cf.dataset == 'SeqMNIST' or self.cf.dataset == 'PerMNIST':
             current = logs.get("val_accuracy")
             l = 0
             h = 1
             wait = 20
         else:
-            print("{} is not supported".format(cf.dataset))
+            print("{} is not supported".format(self.cf.dataset))
             sys.exit()
 	
         if self.i > wait:
@@ -75,19 +76,21 @@ class export_structure(tf.keras.callbacks.Callback):
                 for name, weight in zip(names, weights):
                     if re.search('learned_conv2d.+_?[0-9]/gamma', name):
                         self.gamma[name] = weight
-                        self.gamma[name] = np.array(self.gamma[name] > cf.threshold, dtype=bool)
+                        self.gamma[name] = np.array(self.gamma[name] > self.cf.threshold, dtype=bool)
                         self.gamma[name] = utils.dil_fact(self.gamma[name], op='mul')
                     elif re.search('weight_norm.+_?[0-9]/gamma', name):
                         self.gamma[name] = weight
-                        self.gamma[name] = np.array(self.gamma[name] > cf.threshold, dtype=bool)
+                        self.gamma[name] = np.array(self.gamma[name] > self.cf.threshold, dtype=bool)
                         self.gamma[name] = utils.dil_fact(self.gamma[name], op='mul')
                 print("New best model, update file. \n")
                 print(self.gamma)
-                utils.save_dil_fact(cf.saving_path, self.gamma)
+                if self.cf.dataset == 'PPG_Dalia':
+                    utils.save_dil_fact(self.cf.saving_path+self.cf.dataset, self.gamma, self.cf)
         else:
             self.i += 1
 
 class SaveGamma(tf.keras.callbacks.Callback):
+    
     
     def set_model(self, model):
         self.model = model

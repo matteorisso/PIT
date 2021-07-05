@@ -1,0 +1,2 @@
+regularization strength : 1e-06 	 threshold : 0.5 	 MAE : 5.161687422465005 	 Model size : 202743 
+regularization strength : 1e-06 	 threshold : 0.5 	 MAE : 5.164295784942399 	 Model size : 249335 
