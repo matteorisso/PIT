@@ -1,2 +1,0 @@
-regularization strength : 1e-05 	 threshold : 0.5 	 Loss : 8.457717571789173 	 Model size : 269942 
-regularization strength : 1e-05 	 threshold : 0.5 	 Loss : 8.473711733680055 	 Model size : 269942 

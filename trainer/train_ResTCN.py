@@ -28,15 +28,6 @@ def train_Nottingham(model, ep, cf, X_train, X_valid, X_test, train_losses, vali
            x = x_train.reshape(1, 1, x_train.shape[0], cf.n_classes),
            y = y_train.reshape(1, 1, x_train.shape[0], cf.n_classes))
         
-        if math.isnan(loss):
-            pdb.set_trace()
-            #tf.keras.models.save_model(model, 'model_'+str('nan')+'.h5')
-            #break
-            #raise ValueError
-        else:
-            pass
-            #tf.keras.models.save_model(model, 'model_'+str('pre_nan')+'.h5')
-            
         epoch_losses.append(loss / x_train.shape[0])
 
     valid_idx_list = np.arange(len(X_valid), dtype="int32")
@@ -52,9 +43,6 @@ def train_Nottingham(model, ep, cf, X_train, X_valid, X_test, train_losses, vali
     train_losses.append(sum(epoch_losses) / (1.0 * len(epoch_losses)))
     valid_losses.append(sum(epoch_losses_valid) / (1.0 * len(epoch_losses_valid)))
     print("Epoch : {e} \t Loss : {l} \t Val_Loss : {v}".format(e=ep, l=train_losses[ep], v=valid_losses[ep]))
-    
-    if math.isnan(valid_losses[ep]):
-        pdb.set_trace()
     
     test_idx_list = np.arange(len(X_test), dtype="int32")
     for idx in test_idx_list:

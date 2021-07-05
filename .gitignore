@@ -75,7 +75,5 @@ Dataset/PPG_Dalia/S1/S1_E4.zip
 Dataset/PPG_Dalia/S1/S1_activity.csv
 Dataset/PPG_Dalia/S1/S1.pkl
 Dataset/PPG_Dalia/PPG_FieldStudy_readme.pdf
-Dataset/polymusic/Nottingham.mat
-Dataset/polymusic/JSB_Chorales.mat
 *.pyc
 saved_models/

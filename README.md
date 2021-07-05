@@ -15,11 +15,11 @@ Temporal Convolutional Networks (TCNs) are promising Deep Learning models for ti
 
 ## Datasets
 The current version support the following datasets:
-- PPG-Dalia.
-- Nottingham dataset.
-- JSB Chorales dataset.
-- Sequential MNIST.
-- Permuted MNIST.
+- PPG_Dalia.
+- Nottingham.
+- JSB_Chorales.
+- SeqMNIST (i.e., Sequential MNIST).
+- PerMNIST (i.e., Permuted Sequential MNIST).
 
 Further deitails about the pre-processing and data-loading phases of these datasets are provided under the **./Dataset** directory.
 
