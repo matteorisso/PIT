@@ -1,9 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Oct 25 22:12:33 2020
-
-@author: MatteoRisso
-"""
+#*----------------------------------------------------------------------------*
+#* Copyright (C) 2021 Politecnico di Torino, Italy                            *
+#* SPDX-License-Identifier: Apache-2.0                                        *
+#*                                                                            *
+#* Licensed under the Apache License, Version 2.0 (the "License");            *
+#* you may not use this file except in compliance with the License.           *
+#* You may obtain a copy of the License at                                    *
+#*                                                                            *
+#* http://www.apache.org/licenses/LICENSE-2.0                                 *
+#*                                                                            *
+#* Unless required by applicable law or agreed to in writing, software        *
+#* distributed under the License is distributed on an "AS IS" BASIS,          *
+#* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   *
+#* See the License for the specific language governing permissions and        *
+#* limitations under the License.                                             *
+#*                                                                            *
+#* Author:  Matteo Risso                                                      *
+#*----------------------------------------------------------------------------*
 
 from tensorflow.keras import Sequential, layers
 from custom_layers.auto_layers import LearnedConv2D
@@ -16,10 +28,10 @@ def TEMPONet_d1(width_mult, in_shape, cf, trainable=True, ofmap=[]):
     
     if not ofmap:
         ofmap = [
-                32, 32, 62,
-                63, 64, 128,
-                91, 35, 43,
-                64, 56, 1
+                32, 32, 64,
+                64, 64, 128,
+                128, 128, 128,
+                256, 128, 1
                 ]
 
     model = Sequential()
@@ -42,7 +54,7 @@ def TEMPONet_d1(width_mult, in_shape, cf, trainable=True, ofmap=[]):
     model.add(LearnedConv2D(
         cf=cf,
         gamma_trainable=trainable,
-        filters=ofmap[2], kernel_size=(1,5), padding='valid',
+        filters=ofmap[2], kernel_size=(1,5), padding='same',
         dilation_rate=(1,1), input_shape = (1, in_shape, 4)))
     model.add(layers.AveragePooling2D(pool_size=(1,2), strides=2, padding='valid'))
     model.add(layers.Activation('relu'))
@@ -70,7 +82,7 @@ def TEMPONet_d1(width_mult, in_shape, cf, trainable=True, ofmap=[]):
     model.add(layers.Conv2D(
         filters=ofmap[5], 
         kernel_size=(1,5), 
-        padding='valid', 
+        padding='same', 
         strides=2))
     model.add(layers.AveragePooling2D(pool_size=(1,2), strides=2, padding='valid'))
     model.add(layers.Activation('relu'))
@@ -124,10 +136,10 @@ def TEMPONet_learned(width_mult, in_shape, dil_list, ofmap=[]):
    
     if not ofmap:
         ofmap = [
-                32, 32, 62,
-                63, 64, 128,
-                91, 35, 43,
-                64, 56, 1
+                32, 32, 64,
+                64, 64, 128,
+                128, 128, 128,
+                256, 128, 1
                 ]
 
     input_channel = width_mult * 32

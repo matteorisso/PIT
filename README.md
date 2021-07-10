@@ -1,3 +1,7 @@
+Copyright (C) 2021 Politecnico di Torino, Italy. SPDX-License-Identifier: Apache-2.0. See LICENSE file for details.
+
+Authors: Matteo Risso, Alessio Burrello, Daniele Jahier Pagliari, Francesco Conti, Lorenzo Lamberti, Enrico Macii, Luca Benini, Massimo Poncino
+
 ![logo](Assets/logo.png)
 # Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks
 [DAC 2021] Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks

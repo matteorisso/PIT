@@ -1,9 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 24 10:11:50 2020
-
-@author: MatteoRisso
-"""
+#*----------------------------------------------------------------------------*
+#* Copyright (C) 2021 Politecnico di Torino, Italy                            *
+#* SPDX-License-Identifier: Apache-2.0                                        *
+#*                                                                            *
+#* Licensed under the Apache License, Version 2.0 (the "License");            *
+#* you may not use this file except in compliance with the License.           *
+#* You may obtain a copy of the License at                                    *
+#*                                                                            *
+#* http://www.apache.org/licenses/LICENSE-2.0                                 *
+#*                                                                            *
+#* Unless required by applicable law or agreed to in writing, software        *
+#* distributed under the License is distributed on an "AS IS" BASIS,          *
+#* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   *
+#* See the License for the specific language governing permissions and        *
+#* limitations under the License.                                             *
+#*                                                                            *
+#* Author:  Matteo Risso                                                      *
+#*----------------------------------------------------------------------------*
 
 #import config as cf
 import numpy as np
@@ -13,14 +25,9 @@ import utils
 import re
 import sys
 
-if tf.__version__ == '1.14.0':
-    # some aliases necessary in tf 1.14
-    val_mae = 'val_mean_absolute_error'
-    mae = 'mean_absolute_error'
-else:
-    # some aliases necessary in tf > 1.14
-    val_mae = 'val_mean_absolute_error'
-    mae = 'mean_absolute_error'
+# aliases
+val_mae = 'val_mean_absolute_error'
+mae = 'mean_absolute_error'
 
 class export_structure(tf.keras.callbacks.Callback):
     def __init__(self, cf):

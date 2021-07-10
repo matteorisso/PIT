@@ -1,7 +1,7 @@
 # PPG DaLiA Dataset
 ## Download 
 The dataset is freely available at https://archive.ics.uci.edu/ml/datasets/PPG-DaLiA. 
-Before running experiments on this dataset please downloading the data and update properly the path specified in **../../config.py**.
+Before running experiments on this dataset please download the data and update properly the path specified in **../../config.py**.
 
 ## Overview
 PPG-DaLiA is a publicly available dataset for PPG-based heart rate estimation. This multimodal dataset features physiological and motion data, recorded from both a wrist- and a chest-worn device, of 15 subjects while performing a wide range of activities under close to real-life conditions. The included ECG data provides heart rate ground truth. The included PPG- and 3D-accelerometer data can be used for heart rate estimation, while compensating for motion artefacts. Further details can be found in the dataset's readme-file.

@@ -1,9 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 24 14:16:50 2020
-
-@author: MatteoRisso
-"""
+#*----------------------------------------------------------------------------*
+#* Copyright (C) 2021 Politecnico di Torino, Italy                            *
+#* SPDX-License-Identifier: Apache-2.0                                        *
+#*                                                                            *
+#* Licensed under the Apache License, Version 2.0 (the "License");            *
+#* you may not use this file except in compliance with the License.           *
+#* You may obtain a copy of the License at                                    *
+#*                                                                            *
+#* http://www.apache.org/licenses/LICENSE-2.0                                 *
+#*                                                                            *
+#* Unless required by applicable law or agreed to in writing, software        *
+#* distributed under the License is distributed on an "AS IS" BASIS,          *
+#* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   *
+#* See the License for the specific language governing permissions and        *
+#* limitations under the License.                                             *
+#*                                                                            *
+#* Author:  Matteo Risso                                                      *
+#*----------------------------------------------------------------------------*
 
 import numpy as np
 import tensorflow as tf
@@ -15,34 +27,10 @@ import pdb
 
 import math
 
-# Limit GPU usage
-# if cf.machine == 'server':
-#     if tf.__version__ == '1.14.0':
-#         gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.2)
-#         sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
-#         # some aliases necessary in tf 1.14
-#         val_mae = 'val_mean_absolute_error'
-#         mae = 'mean_absolute_error'
-#     else:
-#         limit = 1024 * 4
-#         gpus = tf.config.experimental.list_physical_devices('GPU')
-#         if gpus:
-#             try:
-#                 tf.config.experimental.set_virtual_device_configuration(gpus[0], [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=limit)])
-#             except RuntimeError as e:
-#                 print(e)
-#         # some aliases necessary in tf > 1.14
-#         val_mae = 'val_mae'
-#         mae = 'mae'
 
-if tf.__version__ == '1.14.0':
-    # some aliases necessary in tf 1.14
-    val_mae = 'val_mean_absolute_error'
-    mae = 'mean_absolute_error'
-else:
-    # some aliases necessary in tf > 1.14
-    val_mae = 'val_mean_absolute_error'
-    mae = 'mean_absolute_error'
+# aliases
+val_mae = 'val_mean_absolute_error'
+mae = 'mean_absolute_error'
 
 from tensorflow.keras.optimizers import Adam, SGD
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint

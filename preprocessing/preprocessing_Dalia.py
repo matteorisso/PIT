@@ -1,23 +1,27 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep  3 12:49:10 2020
-
-Preprocessing function for correctly managing data present in the IEEE_Training
-dataset and/or the PPG_Dalia dataset.
-It takes as input the desired dataset and returns:
-    - X :the data to be used for training, validation and test purposes 
-    - y : ground truth array
-    - groups : specification of 
-
-@author: matteorisso
-"""
+#*----------------------------------------------------------------------------*
+#* Copyright (C) 2021 Politecnico di Torino, Italy                            *
+#* SPDX-License-Identifier: Apache-2.0                                        *
+#*                                                                            *
+#* Licensed under the Apache License, Version 2.0 (the "License");            *
+#* you may not use this file except in compliance with the License.           *
+#* You may obtain a copy of the License at                                    *
+#*                                                                            *
+#* http://www.apache.org/licenses/LICENSE-2.0                                 *
+#*                                                                            *
+#* Unless required by applicable law or agreed to in writing, software        *
+#* distributed under the License is distributed on an "AS IS" BASIS,          *
+#* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   *
+#* See the License for the specific language governing permissions and        *
+#* limitations under the License.                                             *
+#*                                                                            *
+#* Author:  Matteo Risso                                                      *
+#*----------------------------------------------------------------------------*
 
 import pickle
 import numpy as np
 from skimage.util.shape import view_as_windows
 from scipy.io import loadmat
 import random
-#import config as cf
 
 def preprocessing(dataset, cf):
     # Sampling frequency of both ppg and acceleration data in IEEE_Training dataset
