@@ -6,6 +6,22 @@ Authors: Matteo Risso, Alessio Burrello, Daniele Jahier Pagliari, Francesco Cont
 # Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks
 [DAC 2021] Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks
 
+## Reference
+If you use PIT in your experiments, please make sure to cite our paper:
+```
+@inproceedings{risso2021pit,
+	author = {Risso, Burrello and Jahier Pagliari, Conti and Lamberti, Macii and Benini, Poncino},
+	title = {Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks},
+	year = {2021},
+	isbn = {},
+	publisher = {IEEE Press},
+	booktitle = {Proceedings of the 58th ACM/EDAC/IEEE Design Automation Conference},
+	articleno = {},
+	numpages = {},
+	series = {DAC '21}
+}
+```
+
 ## Abstract
 Temporal Convolutional Networks (TCNs) are promising Deep Learning models for time-series processing tasks. One key feature of TCNs is time-dilated convolution, whose optimization requires extensive experimentation. We propose an automatic dilation optimizer, which tackles the problem as a weight pruning on the time-axis, and learns dilation factors together with weights, in a single training. Our method reduces the model size and inference latency on a real SoC hardware target by up to 7.4x and 3x, respectively with no accuracy drop compared to a network without dilation. It also yields a rich set of Pareto-optimal TCNs starting from a single model, outperforming hand-designed solutions in both size and accuracy.
 

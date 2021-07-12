@@ -78,3 +78,4 @@ Dataset/PPG_Dalia/PPG_FieldStudy_readme.pdf
 *.pyc
 saved_models/
 *.txt
+train.sh
