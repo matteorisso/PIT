@@ -10,14 +10,11 @@ Authors: Matteo Risso, Alessio Burrello, Daniele Jahier Pagliari, Francesco Cont
 If you use PIT in your experiments, please make sure to cite our paper:
 ```
 @inproceedings{risso2021pit,
-	author = {Risso, Burrello and Jahier Pagliari, Conti and Lamberti, Macii and Benini, Poncino},
+	author = {Risso, Matteo and Burrello, Alessio and Jahier Pagliari, Daniele and Conti, Francesco and Lamberti, Lorenzo and Macii, Enrico and Benini, Luca and Poncino, Massimo},
 	title = {Pruning In Time (PIT): A Lightweight Network Architecture Optimizer for Temporal Convolutional Networks},
 	year = {2021},
-	isbn = {},
 	publisher = {IEEE Press},
 	booktitle = {Proceedings of the 58th ACM/EDAC/IEEE Design Automation Conference},
-	articleno = {},
-	numpages = {},
 	series = {DAC '21}
 }
 ```
